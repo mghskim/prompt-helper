@@ -533,9 +533,9 @@
             'dev_requirement' => false,
         ),
         'livewire/livewire' => array(
-            'pretty_version' => 'v3.5.4',
-            'version' => '3.5.4.0',
-            'reference' => 'b158c6386a892efc6c5e4682e682829baac1f933',
+            'pretty_version' => 'v3.5.12',
+            'version' => '3.5.12.0',
+            'reference' => '3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../livewire/livewire',
             'aliases' => array(),

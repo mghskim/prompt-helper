@@ -23,10 +23,7 @@
 
         {{-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>  --}}
         {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
-        
-        @livewireScripts
         <!-- Styles -->
-        <link rel="stylesheet" href="resources/css/app.css">
         
     </head>
     <body class="font-sans antialiased dark:bg-zinc-900">

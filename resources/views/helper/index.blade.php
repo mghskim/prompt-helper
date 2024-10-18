@@ -1,23 +1,5 @@
 <x-app-layout>
     <head>
-    {{-- @livewireStyles --}}
-    <script type='text/javascript'>
-
-    (function()
-    {
-      if( window.localStorage )
-      {
-        if( !localStorage.getItem('firstLoad') )
-        {
-          localStorage['firstLoad'] = true;
-          window.location.reload();
-        }  
-        else
-          localStorage.removeItem('firstLoad');
-      }
-    })();
-    
-    </script>
     </head>
     <body class="container mx-auto px-5 flex flex-grow">
         <div class="w-full grid grid-cols-1 gap-6">
@@ -51,9 +33,5 @@
             </div>
         </div>
     </body>
-    <script
-	type="module"
-	src="https://gradio.s3-us-west-2.amazonaws.com/5.0.1/gradio.js"
-\
-    ></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/5.0.1/gradio.js"></script>
 </x-app-layout>

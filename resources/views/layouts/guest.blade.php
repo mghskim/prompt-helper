@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
-        @livewireStyles
+        {{-- @livewireStyles --}}
     </head>
     <body class="font-sans antialiased dark:bg-zinc-900">
         <x-banner />
@@ -29,6 +29,6 @@
         @include('layouts.partials.footer')
 
         @stack('modals')
-        @livewireScripts
+        {{-- @livewireScripts --}}
     </body>
 </html>
