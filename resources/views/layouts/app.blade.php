@@ -8,7 +8,7 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
-
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
 
         <title>{{ config('app.name', 'Prompt Helper') }}</title>
 
