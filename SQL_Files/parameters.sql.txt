@@ -1,0 +1,15 @@
+INSERT INTO `parameters` (`name`, `type`) VALUES
+('Close-up', 'Camera: proximity'),
+('Low angle', 'Camera: angle'),
+('Fish-eye lens', 'Camera: lens'),
+('1960s', 'Styles'),
+('Minimalism', 'Styles'),
+('Vienna Secession', 'Styles'),
+('Cyberpunk', 'Styles'),
+('Gothic', 'Styles'),
+('Anime', 'Styles'),
+('Pop art', 'Styles'),
+('Dark', 'Vibes'),
+('Calm', 'Vibes'),
+('Melancholic', 'Vibes'),
+;
