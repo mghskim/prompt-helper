@@ -81,7 +81,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => "postgresql://dalle-helper_owner:yhqKljaW10Cm@ep-soft-bread-a1dje3hv.ap-southeast-1.aws.neon.tech/dalle-helper?sslmode=require",
+            'url' => "postgresql://dalle-helper_owner:KpygnSu5IOo1@ep-aged-morning-a8ehbqdx.eastus2.azure.neon.tech/dalle-helper?sslmode=require",
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',

@@ -27,6 +27,13 @@
 -- Dumping data for table "parameters"
 --
 
+INSERT INTO "users" ("id", "name", "email", "email_verified_at", "password", "two_factor_secret", "two_factor_recovery_codes", "two_factor_confirmed_at", "remember_token", "current_team_id", "profile_photo_path", "created_at", "updated_at") VALUES
+(1, 'Admin', 'admin@test.com', '2024-08-09 04:34:08', '$2y$12$FrBK7UKtl739ZfUoEDbdBOgOMcrLI8xe1/Wwweom1MDnF4dozazbW', NULL, NULL, NULL, 'DzL1DHcibQEVIJXhO144gqj9IBGBG5A4XsD30MVwun5QMeH42kGeGlK5h8pd', NULL, NULL, '2024-08-08 22:27:27', '2024-08-09 04:34:08'),
+(2, 'Jane Doe', 'jdoe@test.com', NULL, '$2y$12$Enet7Cd7Pm3GJeUrAw56MOd/YBggRGmb7diQ0bOcKR6LGGfZB4x5y', NULL, NULL, NULL, NULL, NULL, 'profile-photos/3C3MgerdrGMKPwao3nCkEW4oMcv2dCgs1gjm8qtb.jpg', '2024-08-13 02:10:14', '2024-08-16 23:22:53'),
+(3, 'Patty', 'patty@test.com', NULL, '$2y$12$IoSYEo2A1o/a29vkrn0mlOC0DvnC4MT1ppu5CKpTt2FN.ruQ7bNE2', NULL, NULL, NULL, NULL, NULL, 'profile-photos/n86k5q9t8Cz7dFwlMEpSGMiPjJBsuib034ioL1bI.jpg', '2024-08-13 02:12:16', '2024-08-15 20:36:37'),
+(4, 'Stephan M.', 'steph@test.com', NULL, '$2y$12$vqmHvAFhzl1SdC/aySwvSuvZJ4BPbpktu7ZFTrsBtFKwlwmM/gCgm', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-13 05:16:33', '2024-08-13 21:19:15'),
+(5, 'Jason', 'jason@test.com', NULL, '$2y$12$fiMCa7IQTEJ8TWCsvcFhIuxoCFXieMfprjopFaBV3NustdYyFEPWO', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-13 20:25:08', '2024-08-13 20:25:08');
+
 INSERT INTO "parameters" ("id", "user_id", "name", "type", "image", "text_color", "custom", "created_at", "updated_at") VALUES
 (1, 1, 'Close-up', 'Camera: proximity', NULL, '', FALSE, '2024-08-09 04:41:08', '2024-08-09 04:41:08'),
 (2, 1, 'Bright, Colorful, Vibrant', 'Vibes', 'parameters/0eKQWJjMCCE7r5sXgLD3HhNkDZiJoS7I8zubeDjV.png', NULL, FALSE, '2024-08-09 04:43:09', '2024-08-13 03:33:43'),
@@ -150,7 +157,7 @@ INSERT INTO "posts" ("id", "user_id", "image", "title", "slug", "body", "categor
 (20, 3, 'uploads/769HA0ASR7mpaq9FxRth4armEwEV6vFwfhBJlqS1.png', 'Corporate Logo', '769ha0as-dalle-3-corporate-lettermark-bichromatic-logo-with-graphic-symbols-house-roof-sun-sea-logo-design-vector-logo-modern-clean-minimalism', 'Corporate lettermark bichromatic logo with graphic symbols, house roof, Sun, Sea, logo design, vector logo, modern, clean, minimalism', 'Logos, Icons, & Design', 1024, 1024, 'DALL•E', '3', '2024-08-13 19:42:38', true, NULL, '2024-08-13 19:42:38', '2024-08-20 14:16:37', 5),
 (21, 4, 'uploads/sf2fxjD6JLfzvKs8zfOUOtKlMXHMDJy5XkOo2HoX.png', NULL, 'sf2fxjd6-stable-diffusion-xl-turbo-cleopatra-reading-a-book-lying-under-a-palm-tree-on-the-banks-of-the-nile-neutral-colors-beige-white-ar-32', 'Cleopatra reading a book lying under a palm tree on the banks of the Nile, neutral colors, beige, white --ar 3:2', 'Concept Art', 896, 1344, 'Stable Diffusion', 'XL Turbo', '2024-08-14 00:09:55', false, NULL, '2024-08-14 00:09:55', '2024-08-14 02:13:24', 4),
 (22, 5, 'uploads/QKDO5JKZVDOpMdQq6BF2pcRemdKb5YleEGGVAb9T.png', 'Minimal kitchen design', 'qkdo5jkz-dalle-3-minimal-and-organic-interior-design-kitchen-sleek-and-polished-surfaces-rounded-and-bulbous-shapes-simple-pastel-colors-harmonious-designs-and', 'Minimal and organic interior design kitchen, sleek and polished surfaces, rounded and bulbous shapes, simple pastel colors, harmonious designs and tableware, photograph', 'Interior Design', 896, 1344, 'DALL•E', '3', '2024-08-14 00:22:54', false, NULL, '2024-08-14 00:22:54', '2024-08-20 17:30:29', 7),
-(23, 1, 'uploads/DA8EWqK2gsJ5s7BfPxlHU1ekxamU3n2pNp5cnGRY.png', NULL, 'da8ewqk2-dalle-2-a-girl-stands-with-her-head-in-a-box-surrounded-by-butterflies-and-falling-pieces-of-paper-the-illustration-style', 'A girl stands with her head in a box, surrounded by butterflies and falling pieces of paper. The illustration style is simple and colorful. She wears blue shorts and an orange T-shirt, has long hair, looks sad but determined as she walks forward, while outside there is a vast expanse of darkness around her.', 'Character Design', 1344, 896, 'DALL•E', '2', '2024-08-14 00:33:39', false, NULL, '2024-08-14 00:33:39', '2024-08-20 07:55:41', 99);
+(23, 1, 'uploads/DA8EWqK2gsJ5s7BfPxlHU1ekxamU3n2pNp5cnGRY.png', NULL, 'da8ewqk2-dalle-2-a-girl-stands-with-her-head-in-a-box-surrounded-by-butterflies-and-falling-pieces-of-paper-the-illustration-style', 'A girl stands with her head in a box, surrounded by butterflies and falling pieces of paper. The illustration style is simple and colorful. She wears blue shorts and an orange T-shirt, has long hair, looks sad but determined as she walks forward, while outside there is a vast expanse of darkness around her.', 'Character Design', 1344, 896, 'DALL•E', '2', '2024-08-14 00:33:39', false, NULL, '2024-08-14 00:33:39', '2024-08-20 07:55:41', 99),
 (24, 4, 'uploads/zZvF7hp4k59RfMcWqBIFfGNgiBHWjQWTyH2O75JM.png', 'Cleopatra', 'zzvf7hp4-midjourney-4-goddess-cleopatra-walking-in-desert-epic-cinematic-scene-cinematography-anime-style-noon-time-strong-scorching-sunlight-long-shadow-white-backdrops', 'Goddess Cleopatra walking in desert, epic, cinematic scene, cinematography, anime style, noon time, strong scorching sunlight, long shadow, white backdrops, Close up image, portrait, front view', 'Portraits', 960, 1200, 'Midjourney', '4', '2024-08-14 01:02:05', false, NULL, '2024-08-14 01:02:05', '2024-08-20 18:36:52', 27),
 (25, 2, 'uploads/SeLMNRQvslwbgZ0Dvzt87boxOYv7ffeErO2HSDcD.png', NULL, 'selmnrqv-midjourney-6-a-girl-is-riding-bicycle-sunflowers-beside-the-road-a-bus-stand-the-sun-is-shining-bright-the-girl-is', 'A girl is riding bicycle. Sunflowers beside the road. A bus stand. The sun is shining bright. The girl is wearing a bucket hat. Ghibli style. HAYAO Miyazaki Style', 'Anime', 1024, 1024, 'Midjourney', '6', '2024-08-14 01:05:07', false, NULL, '2024-08-14 01:05:07', '2024-08-20 17:36:20', 18);
 
@@ -234,14 +241,6 @@ INSERT INTO "role_user" ("id", "user_id", "role_id", "created_at", "updated_at")
 --
 -- Dumping data for table "users"
 --
-
--- INSERT INTO "users" ("id", "name", "email", "email_verified_at", "password", "two_factor_secret", "two_factor_recovery_codes", "two_factor_confirmed_at", "remember_token", "current_team_id", "profile_photo_path", "created_at", "updated_at") VALUES
--- (1, 'Admin', 'admin@test.com', '2024-08-09 04:34:08', '$2y$12$FrBK7UKtl739ZfUoEDbdBOgOMcrLI8xe1/Wwweom1MDnF4dozazbW', NULL, NULL, NULL, 'DzL1DHcibQEVIJXhO144gqj9IBGBG5A4XsD30MVwun5QMeH42kGeGlK5h8pd', NULL, NULL, '2024-08-08 22:27:27', '2024-08-09 04:34:08'),
--- (2, 'Jane Doe', 'jdoe@test.com', NULL, '$2y$12$Enet7Cd7Pm3GJeUrAw56MOd/YBggRGmb7diQ0bOcKR6LGGfZB4x5y', NULL, NULL, NULL, NULL, NULL, 'profile-photos/3C3MgerdrGMKPwao3nCkEW4oMcv2dCgs1gjm8qtb.jpg', '2024-08-13 02:10:14', '2024-08-16 23:22:53'),
--- (3, 'Patty', 'patty@test.com', NULL, '$2y$12$IoSYEo2A1o/a29vkrn0mlOC0DvnC4MT1ppu5CKpTt2FN.ruQ7bNE2', NULL, NULL, NULL, NULL, NULL, 'profile-photos/n86k5q9t8Cz7dFwlMEpSGMiPjJBsuib034ioL1bI.jpg', '2024-08-13 02:12:16', '2024-08-15 20:36:37'),
--- (4, 'Stephan M.', 'steph@test.com', NULL, '$2y$12$vqmHvAFhzl1SdC/aySwvSuvZJ4BPbpktu7ZFTrsBtFKwlwmM/gCgm', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-13 05:16:33', '2024-08-13 21:19:15'),
--- (5, 'Jason', 'jason@test.com', NULL, '$2y$12$fiMCa7IQTEJ8TWCsvcFhIuxoCFXieMfprjopFaBV3NustdYyFEPWO', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-13 20:25:08', '2024-08-13 20:25:08');
-
 
 
 
