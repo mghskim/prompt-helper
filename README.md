@@ -1,3 +1,4 @@
+
 # DALL-E Prompt Helper
 
 ## About
@@ -21,13 +22,13 @@ Before we start, make sure you have the following installed:
 ## Installation
 
 1. Unzip the downloaded archive
-2. Copy and paste DALLE-Prompt-Helper-Main folder in your projects folder. 
-3. In your terminal run composer install and npm install
-4. In phpmyadmin, Create a database named “dalle_helper” and run php artisan db:seed --class=ImportDataSeeder to seed the records into the tables. Alternatively, you can import the database/seed/dalle_helper.sql into the created database (“dalle_helper”) 
-5. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
-6. In your terminal run php artisan key:generate
-7. Run php artisan storage:link to create the storage symlink.
-8. Then finally launch the command php artisan serve.
+2. Copy and paste DALLE-Prompt-Helper-Main folder in your projects folder. 
+3. In your terminal run composer install and npm install
+4. In phpmyadmin, Create a database named “dalle_helper” and run php artisan db:seed --class=ImportDataSeeder to seed the records into the tables. Alternatively, you can import the database/seed/dalle_helper.sql into the created database (“dalle_helper”) 
+5. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
+6. In your terminal run php artisan key:generate
+7. Run php artisan storage:link to create the storage symlink.
+8. Then finally launch the command php artisan serve.
 
 ## How to Use
 
@@ -38,3 +39,14 @@ After the output prompt has been generated, you can then copy and paste it in DA
 This is a non-commercial software designed both for the purpose of improving productivity at companies and groups relying on AI image generation, and individuals who enjoy experimenting with generative AI for fun.
 
 For further information, you can refer to the documentation linked here: https://docs.google.com/document/d/15P9EBTjKnpde_tuiPd_HqiiAab2eY9TTZR-FUI_OpN0/edit?usp=sharing
+
+## Credentials for testing
+
+| Username        | Password  |
+|-----------------|-----------|
+| admin@test.com  | admin123  |
+| jdoe@test.com   | jdoe1234  |
+| justin@test.com | justin123 |
+| hilary@test.com | hilary123 |
+| gideon@test.com | gideon123 |
+```
