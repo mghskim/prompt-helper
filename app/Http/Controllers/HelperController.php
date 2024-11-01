@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Buglinjo\LaravelWebp\Webp;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+
 
 class HelperController extends Controller
 {
@@ -45,15 +48,18 @@ class HelperController extends Controller
         $imagePath = null;
             if ($request->hasFile('image')) {
                 $imageFile = $request->file('image');
-                $storePath = 'public/uploads';
+                // $storePath = 'public/uploads';
                 $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
                 $originFilename = $filename . '.' . $imageFile->extension();
-                $imageFile->storeAs($storePath, $originFilename);
+                $webpFilename = $filename . '.webp';
+                $webp = Webp::make($imageFile);
+                $webp->save(storage_path("app/public/webps/{$filename}.webp"));
+                // $imageFile->storeAs($storePath, $originFilename);
                 
-                $storedPath = storage_path("app/public/uploads/{$originFilename}");
+                $storedPath = storage_path("app/public/webps/{$webpFilename}");
                 list($width, $height) = getimagesize($storedPath);
                 
-                $imagePath = "uploads/{$originFilename}";
+                $imagePath = $webpFilename;
              }
 
 
@@ -74,9 +80,6 @@ class HelperController extends Controller
             'published_at' => $current_date_time
         ]);
         
-        // session()->flash('success', 'User Created Success!');
         return redirect()->route('post.index', auth::id())->with('success', 'Post updated successfully.');
-
-        // return view('livewire.submit-modal');
     }
 }

@@ -21,12 +21,12 @@ use PHPUnit\TextUI\XmlConfiguration\Logging\Logging;
  *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  *
- * @immutable
+ * @psalm-immutable
  */
 final readonly class LoadedFromFileConfiguration extends Configuration
 {
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private string $filename;
     private ValidationResult $validationResult;
@@ -52,7 +52,7 @@ final readonly class LoadedFromFileConfiguration extends Configuration
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function filename(): string
     {

@@ -30,7 +30,7 @@ use PHPUnit\Util\Xml\XmlException;
 final readonly class Reader
 {
     /**
-     * @param non-empty-string $baselineFile
+     * @psalm-param non-empty-string $baselineFile
      *
      * @throws CannotLoadBaselineException
      */

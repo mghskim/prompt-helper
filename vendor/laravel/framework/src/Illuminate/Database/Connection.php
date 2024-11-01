@@ -625,18 +625,6 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * Get the number of open connections for the database.
-     *
-     * @return int|null
-     */
-    public function threadCount()
-    {
-        $query = $this->getQueryGrammar()->compileThreadCount();
-
-        return $query ? $this->scalar($query) : null;
-    }
-
-    /**
      * Execute the given callback in "dry run" mode.
      *
      * @param  \Closure  $callback
@@ -672,11 +660,11 @@ class Connection implements ConnectionInterface
 
         $this->pretending = false;
 
-        try {
-            return $callback();
-        } finally {
-            $this->pretending = true;
-        }
+        $result = $callback();
+
+        $this->pretending = true;
+
+        return $result;
     }
 
     /**
@@ -1360,16 +1348,6 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * Get a human-readable name for the given connection driver.
-     *
-     * @return string
-     */
-    public function getDriverTitle()
-    {
-        return $this->getDriverName();
-    }
-
-    /**
      * Get the query grammar used by the connection.
      *
      * @return \Illuminate\Database\Query\Grammars\Grammar
@@ -1634,10 +1612,8 @@ class Connection implements ConnectionInterface
     /**
      * Set the table prefix and return the grammar.
      *
-     * @template TGrammar of \Illuminate\Database\Grammar
-     *
-     * @param  TGrammar  $grammar
-     * @return TGrammar
+     * @param  \Illuminate\Database\Grammar  $grammar
+     * @return \Illuminate\Database\Grammar
      */
     public function withTablePrefix(Grammar $grammar)
     {
@@ -1672,7 +1648,7 @@ class Connection implements ConnectionInterface
      * Get the connection resolver for the given driver.
      *
      * @param  string  $driver
-     * @return \Closure|null
+     * @return mixed
      */
     public static function getResolver($driver)
     {

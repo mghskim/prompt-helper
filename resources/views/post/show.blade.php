@@ -9,7 +9,8 @@
             {{-- Left Part --}}
             <div class="col-2 w-full px-2">
                 <div x-data="{ modalOpen: false, imageSrc: '' }">
-                    <img x-on:click="modalOpen = true; imageSrc = '{{ 'https://raw.githubusercontent.com/KimGabs/dalle-helper/refs/heads/project/storage/app/public/' . $post->image }}'" src="{{ 'https://raw.githubusercontent.com/KimGabs/dalle-helper/refs/heads/project/storage/app/public/' . $post->image }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
+                    {{-- "{{ asset('storage/' . $post->image) }}" --}}
+                    <img x-on:click="modalOpen = true; imageSrc = '{{ asset('storage/webps/' . $post->image) }}'" src="{{ asset('storage/webps/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
 
                     {{-- Modal --}}
                     <div 
@@ -74,11 +75,6 @@
                                       </svg>               
                                       {{ $post->views }}
                                     <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-post'" :styleButton="'styleButton-post'" :likeCount="'likeCount-post'" />
-                                    {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="size-5 mx-1 text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                    </svg>      --}}
                                 </span>
                             </div>
                         </div>
@@ -92,7 +88,7 @@
                 </div>
                 @endif
                 {{-- Prompt Container --}}
-                <div class="row-auto bg-white overflow-wrap break-word border border-gray-200 rounded-lg px-8 py-6 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
+                <div class="row-auto bg-white overflow-wrap break-word border border-gray-200 rounded-lg px-8 py-6 self-center dark:bg-zinc-700 dark:text-white dark:border-gray-800">
                     {{-- The Prompt --}}
                     <div class="prompt">
                         <b id="postBody">{{ $post->body }}</b>
@@ -120,7 +116,7 @@
                     </div>
                 </div>
                 {{-- Image Dimenstion Container --}}
-                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-zinc-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Image Dimension</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
@@ -133,7 +129,7 @@
                 </div>
 
                 {{-- Model Used Container--}}
-                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-zinc-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Model Used</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
@@ -142,8 +138,8 @@
                         <span class="text-gray-800 dark:text-white">{{ $post->version }}</span>
                     </div>
                 </div>
-                  {{-- Category Container--}}
-                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
+                  {{-- Category Container--}}       
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-zinc-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Prompt Category</h3>
                     <div class="text-center">
                         <span>{{ $post->category }} </span>
@@ -151,21 +147,22 @@
                 </div>
 
                   {{-- Collection Container--}}
-                  <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
+                  <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-zinc-700 dark:text-white dark:border-gray-800">
                     <a href="{{ route('post.index', $post->author->id) }}"><h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Author's Collection</h3></a>
                         @if($authorPosts->count())
                         <div class="grid grid-cols-3 gap-0">
                             @foreach($authorPosts as $authorPost)
                             <div class="aspect-square">
                                 <a href="{{ route('post.show', $authorPost->slug) }}" class=" inset-0">
-                                    <img src="{{ 'https://raw.githubusercontent.com/KimGabs/dalle-helper/refs/heads/project/storage/app/public/' . $authorPost->image }}" alt="{{ $authorPost->title }}" class="w-full h-full object-cover">
+                                    <img src="{{ asset('storage/webps/' . $authorPost->image) }}" alt="{{ $authorPost->title }}" class="w-full h-full object-cover">
                                 </a>
                             </div>
                             @endforeach
-                    @else
-                    
-                            <span>No posts available by this author.</span>
-                        @endif
+                            @else
+                            <div class="text-center">
+                                <span>No other posts have been created by this author yet</span>
+                            </div>
+                            @endif
                     </div>
                 </div>
 
@@ -176,18 +173,6 @@
 
     </div>
 
-{{--     
-    <div class="container">
-        <div class="post">
-            @if($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
-            @endif
-            <p>Published on: {{ $post->published_at ? $post->published_at->format('F j, Y') : 'Not published' }}</p>
-
-            <h1>{{ $post->title }}</h1>
-            <p>{{ $post->body }}</p>
-        </div>
-    </div> --}}
 </x-app-layout>
 
 <script>

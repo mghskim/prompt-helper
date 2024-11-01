@@ -30,7 +30,7 @@ final readonly class Filesystem
     }
 
     /**
-     * @param non-empty-string $path
+     * @psalm-param non-empty-string $path
      *
      * @return false|non-empty-string
      */

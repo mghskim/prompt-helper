@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
+use Buglinjo\LaravelWebp\Webp;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
@@ -68,13 +69,17 @@ class PostsController extends Controller
         $imagePath = null;
             if ($request->hasFile('newImage')) {
 
-                if ($post->image && Storage::exists('public/' . $post->image)) {
-                    Storage::delete('public/' . $post->image);
+                if ($post->image && Storage::exists('public/webps/' . $post->image)) {
+                    Storage::delete('public/webps/' . $post->image);
                 }
-
-                $imagePath = $request->file('newImage')->store('/uploads', 'public');
-                $filename = pathinfo($imagePath, PATHINFO_FILENAME);
-                list($width, $height) = getimagesize('storage/' . $imagePath);
+                $imageFile = $request->file('newImage');
+                $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
+                $webpFilename = $filename . '.webp';
+                $imagePath = $webpFilename;
+                $webp = Webp::make($imageFile);
+                $webp->save(storage_path("app/public/webps/{$filename}.webp"));
+                $storedPath = storage_path("app/public/webps/{$webpFilename}");
+                list($width, $height) = getimagesize($storedPath);
             }
             else {
                 $imagePath = $post->image;
@@ -114,7 +119,7 @@ class PostsController extends Controller
 
         $post->update(array_filter($incomingFields));
 
-        return redirect()->route('posts.index')->with('success', 'User updated successfully.');
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
     public function destroy(Post $post)

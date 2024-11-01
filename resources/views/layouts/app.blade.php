@@ -8,7 +8,7 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 
         <title>{{ config('app.name', 'Prompt Helper') }}</title>
 
@@ -24,6 +24,7 @@
         {{-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>  --}}
         {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
         <!-- Styles -->
+        @livewireStyles
         
     </head>
     <body class="font-sans antialiased dark:bg-zinc-900">

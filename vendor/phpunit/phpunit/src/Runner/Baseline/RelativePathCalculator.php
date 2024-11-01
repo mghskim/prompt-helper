@@ -31,12 +31,12 @@ use function trim;
 final readonly class RelativePathCalculator
 {
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string $baselineDirectory
      */
     private string $baselineDirectory;
 
     /**
-     * @param non-empty-string $baselineDirectory
+     * @psalm-param non-empty-string $baselineDirectory
      */
     public function __construct(string $baselineDirectory)
     {
@@ -44,9 +44,9 @@ final readonly class RelativePathCalculator
     }
 
     /**
-     * @param non-empty-string $filename
+     * @psalm-param non-empty-string $filename
      *
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function calculate(string $filename): string
     {
@@ -58,9 +58,9 @@ final readonly class RelativePathCalculator
     }
 
     /**
-     * @param non-empty-string $filename
+     * @psalm-param non-empty-string $filename
      *
-     * @return list<non-empty-string>
+     * @psalm-return list<non-empty-string>
      */
     public function parts(string $filename): array
     {

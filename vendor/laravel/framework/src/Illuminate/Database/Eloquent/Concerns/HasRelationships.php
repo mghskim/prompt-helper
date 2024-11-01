@@ -329,7 +329,7 @@ trait HasRelationships
      * @param  string  $name
      * @param  string  $type
      * @param  string  $id
-     * @param  string|null  $ownerKey
+     * @param  string  $ownerKey
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     protected function morphInstanceTo($target, $name, $type, $id, $ownerKey)
@@ -792,19 +792,17 @@ trait HasRelationships
      */
     public function touchOwners()
     {
-        $this->withoutRecursion(function () {
-            foreach ($this->getTouchedRelations() as $relation) {
-                $this->$relation()->touch();
+        foreach ($this->getTouchedRelations() as $relation) {
+            $this->$relation()->touch();
 
-                if ($this->$relation instanceof self) {
-                    $this->$relation->fireModelEvent('saved', false);
+            if ($this->$relation instanceof self) {
+                $this->$relation->fireModelEvent('saved', false);
 
-                    $this->$relation->touchOwners();
-                } elseif ($this->$relation instanceof Collection) {
-                    $this->$relation->each->touchOwners();
-                }
+                $this->$relation->touchOwners();
+            } elseif ($this->$relation instanceof Collection) {
+                $this->$relation->each->touchOwners();
             }
-        });
+        }
     }
 
     /**

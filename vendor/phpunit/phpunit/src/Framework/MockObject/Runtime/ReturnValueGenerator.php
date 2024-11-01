@@ -21,7 +21,6 @@ use function str_starts_with;
 use function substr;
 use PHPUnit\Framework\MockObject\Generator\Generator;
 use ReflectionClass;
-use ReflectionObject;
 use stdClass;
 use Throwable;
 
@@ -33,12 +32,13 @@ use Throwable;
 final class ReturnValueGenerator
 {
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
+     * @psalm-param class-string $stubClassName
      *
      * @throws Exception
      */
-    public function generate(string $className, string $methodName, StubInternal $testStub, string $returnType): mixed
+    public function generate(string $className, string $methodName, string $stubClassName, string $returnType): mixed
     {
         $intersection = false;
         $union        = false;
@@ -95,7 +95,7 @@ final class ReturnValueGenerator
             }
 
             if (in_array('static', $lowerTypes, true)) {
-                return $this->newInstanceOf($testStub, $className, $methodName);
+                return $this->newInstanceOf($stubClassName, $className, $methodName);
             }
 
             if (in_array('object', $lowerTypes, true)) {
@@ -160,7 +160,7 @@ final class ReturnValueGenerator
     }
 
     /**
-     * @param non-empty-list<string> $types
+     * @psalm-param non-empty-list<string> $types
      */
     private function onlyInterfaces(array $types): bool
     {
@@ -174,27 +174,16 @@ final class ReturnValueGenerator
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $stubClassName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
      * @throws RuntimeException
      */
-    private function newInstanceOf(StubInternal $testStub, string $className, string $methodName): Stub
+    private function newInstanceOf(string $stubClassName, string $className, string $methodName): Stub
     {
         try {
-            $object    = (new ReflectionClass($testStub::class))->newInstanceWithoutConstructor();
-            $reflector = new ReflectionObject($object);
-
-            $reflector->getProperty('__phpunit_state')->setValue(
-                $object,
-                new TestDoubleState(
-                    $testStub->__phpunit_state()->configurableMethods(),
-                    $testStub->__phpunit_state()->generateReturnValues(),
-                ),
-            );
-
-            return $object;
-            // @codeCoverageIgnoreStart
+            return (new ReflectionClass($stubClassName))->newInstanceWithoutConstructor();
         } catch (Throwable $t) {
             throw new RuntimeException(
                 sprintf(
@@ -204,14 +193,13 @@ final class ReturnValueGenerator
                     $t->getMessage(),
                 ),
             );
-            // @codeCoverageIgnoreEnd
         }
     }
 
     /**
-     * @param class-string     $type
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $type
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
      * @throws RuntimeException
      */
@@ -219,7 +207,6 @@ final class ReturnValueGenerator
     {
         try {
             return (new Generator)->testDouble($type, false, false, [], [], '', false);
-            // @codeCoverageIgnoreStart
         } catch (Throwable $t) {
             throw new RuntimeException(
                 sprintf(
@@ -229,14 +216,13 @@ final class ReturnValueGenerator
                     $t->getMessage(),
                 ),
             );
-            // @codeCoverageIgnoreEnd
         }
     }
 
     /**
-     * @param non-empty-list<string> $types
-     * @param class-string           $className
-     * @param non-empty-string       $methodName
+     * @psalm-param non-empty-list<string> $types
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
      * @throws RuntimeException
      */
@@ -244,7 +230,6 @@ final class ReturnValueGenerator
     {
         try {
             return (new Generator)->testDoubleForInterfaceIntersection($types, false);
-            // @codeCoverageIgnoreStart
         } catch (Throwable $t) {
             throw new RuntimeException(
                 sprintf(
@@ -254,7 +239,6 @@ final class ReturnValueGenerator
                     $t->getMessage(),
                 ),
             );
-            // @codeCoverageIgnoreEnd
         }
     }
 }

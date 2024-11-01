@@ -22,7 +22,7 @@ use XMLWriter;
 final readonly class Writer
 {
     /**
-     * @param non-empty-string $baselineFile
+     * @psalm-param non-empty-string $baselineFile
      */
     public function write(string $baselineFile, Baseline $baseline): void
     {

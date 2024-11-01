@@ -21,12 +21,16 @@ class ParameterModal extends Component
 
     public function selectParameter($parameterId)
     {
+        $this->dispatch('loadingStarted');
+
         if (($key = array_search($parameterId, $this->selectedParameters)) !== false) {
             unset($this->selectedParameters[$key]);
         } else {
             $this->selectedParameters[] = $parameterId;
         }
         $this->dispatch('parametersUpdated', $this->type, $this->getSelectedParameters());
+
+        $this->dispatch('loadingEnded');
     }
 
     public function getSelectedParameters()

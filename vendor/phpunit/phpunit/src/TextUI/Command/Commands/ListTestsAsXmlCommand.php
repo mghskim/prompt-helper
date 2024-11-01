@@ -25,13 +25,13 @@ use XMLWriter;
 final readonly class ListTestsAsXmlCommand implements Command
 {
     /**
-     * @var list<PhptTestCase|TestCase>
+     * @psalm-var list<TestCase|PhptTestCase>
      */
     private array $tests;
     private string $filename;
 
     /**
-     * @param list<PhptTestCase|TestCase> $tests
+     * @psalm-param list<TestCase|PhptTestCase> $tests
      */
     public function __construct(array $tests, string $filename)
     {

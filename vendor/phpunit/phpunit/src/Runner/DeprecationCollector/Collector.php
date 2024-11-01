@@ -22,7 +22,7 @@ use PHPUnit\Event\UnknownSubscriberTypeException;
 final class Collector
 {
     /**
-     * @var list<non-empty-string>
+     * @psalm-var list<non-empty-string>
      */
     private array $deprecations = [];
 
@@ -39,7 +39,7 @@ final class Collector
     }
 
     /**
-     * @return list<non-empty-string>
+     * @psalm-return list<non-empty-string>
      */
     public function deprecations(): array
     {

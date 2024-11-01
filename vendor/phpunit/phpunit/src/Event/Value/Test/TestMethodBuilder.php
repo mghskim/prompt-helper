@@ -19,8 +19,8 @@ use PHPUnit\Event\TestData\DataFromTestDependency;
 use PHPUnit\Event\TestData\TestDataCollection;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Metadata\Parser\Registry as MetadataRegistry;
-use PHPUnit\Util\Exporter;
 use PHPUnit\Util\Reflection;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
@@ -64,6 +64,7 @@ final readonly class TestMethodBuilder
 
     private static function dataFor(TestCase $testCase): TestDataCollection
     {
+        $exporter = new Exporter;
         $testData = [];
 
         if ($testCase->usesDataProvider()) {
@@ -75,14 +76,14 @@ final readonly class TestMethodBuilder
 
             $testData[] = DataFromDataProvider::from(
                 $dataSetName,
-                Exporter::export($testCase->providedData()),
+                $exporter->export($testCase->providedData()),
                 $testCase->dataSetAsStringWithData(),
             );
         }
 
         if ($testCase->hasDependencyInput()) {
             $testData[] = DataFromTestDependency::from(
-                Exporter::export($testCase->dependencyInput()),
+                $exporter->export($testCase->dependencyInput()),
             );
         }
 

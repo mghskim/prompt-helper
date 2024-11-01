@@ -228,8 +228,8 @@ final class TestRunner
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      */
     private function hasCoverageMetadata(string $className, string $methodName): bool
     {

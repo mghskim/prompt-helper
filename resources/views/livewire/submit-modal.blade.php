@@ -22,10 +22,10 @@
                 <div>
                     <div class="flex flex-col justify-center bg-gray-200 dark:bg-gray-600">
                         <div class="flex flex-col md:flex-row p-2 md:p-5">
-                            <div class="content-center px-4">
+                            <div class="flex-1 content-center px-4">
                                 <div class="flex mb-4 w-full max-w h-80 bg-gray-200 mt-3 md:mt-0">
                                     @if($image)
-                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg dark:bg-gray-900" >
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="object-contain w-full h-full dark:bg-gray-900" >
                                     @else
                                         {{-- <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-contain w-full h-full dark:bg-gray-800"> --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full dark:text-gray-200 dark:bg-gray-800">
@@ -90,7 +90,7 @@
                                         </script>
                                     </div>
                                 </div>
-                                <div class="flex flex-col flex-auto gap-4 sm:flex-col lg:flex-row">
+                                <div class="flex flex-1 flex-col flex-auto gap-4 sm:flex-col lg:flex-row">
                                     <div class="flex-auto">
                                         <label for="title" class="block font-medium text-gray-900 dark:text-white">Title (Optional)</label>
                                         <input type="text" id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2"/>

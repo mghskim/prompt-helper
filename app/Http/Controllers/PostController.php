@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
+use Buglinjo\LaravelWebp\Webp;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -75,24 +76,16 @@ class PostController extends Controller
             if ($request->hasFile('newImage')) {
 
                 if ($post->image && Storage::exists('public/' . $post->image)) {
-                    Storage::delete('public/' . $post->image);
+                    Storage::delete('public/webps' . $post->image);
                 }
-
                 $imageFile = $request->file('newImage');
-                $extension = $imageFile->extension();
-                $storePath = 'public/uploads';
-                if($incomingFields['ai_model']){
-                    $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
-                }else{
-                    $filename = str::slug($first20Words . "-" .  $post->model . "-" . $post->version  . "-" . uniqid());
-                }
-                $originFilename = $filename . '.' . $extension;
-                $imageFile->storeAs($storePath, $originFilename);
-                
-                $storedPath = storage_path("app/public/uploads/{$originFilename}");
+                $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
+                $webpFilename = $filename . '.webp';
+                $imagePath = $webpFilename;
+                $webp = Webp::make($imageFile);
+                $webp->save(storage_path("app/public/webps/{$filename}.webp"));
+                $storedPath = storage_path("app/public/webps/{$webpFilename}");
                 list($width, $height) = getimagesize($storedPath);
-                
-                $imagePath = "uploads/{$originFilename}";
             }
             else {
                 $imagePath = $post->image;

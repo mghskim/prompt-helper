@@ -13,12 +13,12 @@ namespace App\Http\Controllers\Admin;
     {
         private function authorizeParamUpdate(Parameter $param) 
         {
-            return auth()->user()->id === $param->user_id;
+            return Auth::user()->id === $param->user_id;
         }
 
         public function index()
         {
-            if (!auth()->check()) {
+            if (!Auth::user()->id) {
                 return redirect('/login');
             }
             $parameters = Parameter::paginate(10); // 10 items per page
@@ -74,7 +74,7 @@ namespace App\Http\Controllers\Admin;
     
         public function edit(Parameter $parameter)
         {
-            if (!auth()->check()) {
+            if (!$this->authorizeParamUpdate($parameter)) {
                 return redirect('/login');
             }
             // Show form for editing the parameter

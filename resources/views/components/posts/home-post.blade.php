@@ -2,7 +2,7 @@
 <div class="grid-item group overflow-hidden relative rounded-md mb-4">
         <a href="post/{{ $post->slug }}">
             <img
-            src="{{ 'https://raw.githubusercontent.com/KimGabs/dalle-helper/refs/heads/project/storage/app/public/' . $post->image }}"  
+            src="{{ asset('storage/webps/' . $post->image) }}"
             alt="{{ $post->title }}"
             class="masonry-content fade-in-image overflow-hidden group transition-all duration-200 object-cover ease-in"
             />

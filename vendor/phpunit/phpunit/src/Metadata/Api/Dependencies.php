@@ -23,10 +23,10 @@ use PHPUnit\Metadata\Parser\Registry;
 final readonly class Dependencies
 {
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
-     * @return list<ExecutionOrderDependency>
+     * @psalm-return list<ExecutionOrderDependency>
      */
     public static function dependencies(string $className, string $methodName): array
     {

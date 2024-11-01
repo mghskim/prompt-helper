@@ -104,7 +104,7 @@ EOT;
 EOT;
 
     /**
-     * @param array<string, TestResultCollection> $tests
+     * @psalm-param array<string, TestResultCollection> $tests
      */
     public function render(array $tests): string
     {
@@ -131,7 +131,7 @@ EOT;
     }
 
     /**
-     * @return array<string, 'defect'|'success'>
+     * @psalm-return array<string, 'success'|'defect'>
      */
     private function reduce(TestResultCollection $tests): array
     {

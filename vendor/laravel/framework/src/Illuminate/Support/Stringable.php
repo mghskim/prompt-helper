@@ -236,17 +236,6 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
     }
 
     /**
-     * Replace consecutive instances of a given character with a single character.
-     *
-     * @param  string  $character
-     * @return static
-     */
-    public function deduplicate(string $character = ' ')
-    {
-        return new static(Str::deduplicate($this->value, $character));
-    }
-
-    /**
      * Get the parent directory's path.
      *
      * @param  int  $levels
@@ -478,12 +467,11 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      * Convert inline Markdown into HTML.
      *
      * @param  array  $options
-     * @param  array  $extensions
      * @return static
      */
-    public function inlineMarkdown(array $options = [], array $extensions = [])
+    public function inlineMarkdown(array $options = [])
     {
-        return new static(Str::inlineMarkdown($this->value, $options, $extensions));
+        return new static(Str::inlineMarkdown($this->value, $options));
     }
 
     /**

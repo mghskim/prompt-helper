@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-2 grid-flow-col">
                     <div class="col-span-2">
                         <label>{{ $type }}</label>
-                    <select name="parameters[{{ $type }}]" class="parameters mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:bg-zinc-800 dark:text-white focus:border-transparent">
+                    <select name="parameters[{{ $type }}]" class="parameters mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-zinc-700 dark:border-gray-600 dark:bg-zinc-800 dark:text-white focus:border-transparent">
                         <option value="">--Select--</option>
                         @foreach ($parameters as $parameter)
                             <option value="{{ $parameter->name }}">{{ $parameter->name }}</option>

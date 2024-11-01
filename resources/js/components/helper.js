@@ -1,5 +1,3 @@
-console.log('Helper Listening!');
-
 function setupEventListeners() {
     var userInput = document.getElementById('userInput');
     var readOnlyInput = document.getElementById('readOnlyInput');
@@ -23,6 +21,8 @@ function setupEventListeners() {
         button.removeEventListener('click', updateReadOnlyInput); // Remove previous listener
         button.addEventListener('click', updateReadOnlyInput);
     });
+
+    setInterval(updateReadOnlyInput, 3000);
 
     function updateReadOnlyInput() {
         var userInputValue = userInput ? userInput.value : '';

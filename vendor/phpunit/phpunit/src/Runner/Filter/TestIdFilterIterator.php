@@ -26,13 +26,13 @@ use RecursiveIterator;
 final class TestIdFilterIterator extends RecursiveFilterIterator
 {
     /**
-     * @var non-empty-list<non-empty-string>
+     * @psalm-var non-empty-list<non-empty-string>
      */
     private readonly array $testIds;
 
     /**
-     * @param RecursiveIterator<int, Test>     $iterator
-     * @param non-empty-list<non-empty-string> $testIds
+     * @psalm-param RecursiveIterator<int, Test> $iterator
+     * @psalm-param non-empty-list<non-empty-string> $testIds
      */
     public function __construct(RecursiveIterator $iterator, array $testIds)
     {

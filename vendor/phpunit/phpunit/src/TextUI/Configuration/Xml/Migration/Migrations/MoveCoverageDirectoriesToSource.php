@@ -48,11 +48,7 @@ final readonly class MoveCoverageDirectoriesToSource implements Migration
         $xpath = new DOMXPath($document);
 
         foreach (['include', 'exclude'] as $element) {
-            $nodes = $xpath->query('//coverage/' . $element);
-
-            assert($nodes !== false);
-
-            foreach (SnapshotNodeList::fromNodeList($nodes) as $node) {
+            foreach (SnapshotNodeList::fromNodeList($xpath->query('//coverage/' . $element)) as $node) {
                 $source->appendChild($node);
             }
         }

@@ -15,6 +15,7 @@ use function assert;
 use function sprintf;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\PhptTestCase;
+use PHPUnit\TextUI\Configuration\Registry;
 use ReflectionClass;
 use ReflectionException;
 
@@ -26,12 +27,12 @@ use ReflectionException;
 final readonly class ListTestFilesCommand implements Command
 {
     /**
-     * @var list<PhptTestCase|TestCase>
+     * @psalm-var list<TestCase|PhptTestCase>
      */
     private array $tests;
 
     /**
-     * @param list<PhptTestCase|TestCase> $tests
+     * @psalm-param list<TestCase|PhptTestCase> $tests
      */
     public function __construct(array $tests)
     {
@@ -43,6 +44,8 @@ final readonly class ListTestFilesCommand implements Command
      */
     public function execute(): Result
     {
+        $configuration = Registry::get();
+
         $buffer = 'Available test files:' . PHP_EOL;
 
         $results = [];

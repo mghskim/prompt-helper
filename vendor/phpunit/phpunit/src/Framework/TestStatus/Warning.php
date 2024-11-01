@@ -10,7 +10,7 @@
 namespace PHPUnit\Framework\TestStatus;
 
 /**
- * @immutable
+ * @psalm-immutable
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  *
@@ -18,7 +18,10 @@ namespace PHPUnit\Framework\TestStatus;
  */
 final readonly class Warning extends Known
 {
-    public function isWarning(): true
+    /**
+     * @psalm-assert-if-true Warning $this
+     */
+    public function isWarning(): bool
     {
         return true;
     }

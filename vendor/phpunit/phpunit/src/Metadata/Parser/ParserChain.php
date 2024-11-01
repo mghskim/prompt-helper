@@ -9,9 +9,6 @@
  */
 namespace PHPUnit\Metadata\Parser;
 
-use function assert;
-use function class_exists;
-use function method_exists;
 use PHPUnit\Metadata\MetadataCollection;
 
 /**
@@ -31,12 +28,10 @@ final readonly class ParserChain implements Parser
     }
 
     /**
-     * @param class-string $className
+     * @psalm-param class-string $className
      */
     public function forClass(string $className): MetadataCollection
     {
-        assert(class_exists($className));
-
         $metadata = $this->attributeReader->forClass($className);
 
         if (!$metadata->isEmpty()) {
@@ -47,14 +42,11 @@ final readonly class ParserChain implements Parser
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      */
     public function forMethod(string $className, string $methodName): MetadataCollection
     {
-        assert(class_exists($className));
-        assert(method_exists($className, $methodName));
-
         $metadata = $this->attributeReader->forMethod($className, $methodName);
 
         if (!$metadata->isEmpty()) {
@@ -65,8 +57,8 @@ final readonly class ParserChain implements Parser
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      */
     public function forClassAndMethod(string $className, string $methodName): MetadataCollection
     {

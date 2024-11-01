@@ -19,18 +19,16 @@ use Throwable;
 final readonly class Cloner
 {
     /**
-     * @template OriginalType of object
+     * @psalm-template OriginalType of object
      *
-     * @param OriginalType $original
+     * @psalm-param OriginalType $original
      *
-     * @return OriginalType
+     * @psalm-return OriginalType
      */
     public static function clone(object $original): object
     {
         try {
             return clone $original;
-
-            /** @phpstan-ignore catch.neverThrown */
         } catch (Throwable) {
             return $original;
         }

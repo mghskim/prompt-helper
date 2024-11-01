@@ -11,7 +11,6 @@ namespace PHPUnit\Metadata\Parser;
 
 use function array_merge;
 use function assert;
-use function class_exists;
 use function count;
 use function explode;
 use function method_exists;
@@ -43,17 +42,17 @@ use PHPUnit\Util\VersionComparisonOperator;
 final class AnnotationParser implements Parser
 {
     /**
-     * @var array<string, true>
+     * @psalm-var array<string, true>
      */
     private static array $deprecationEmittedForClass = [];
 
     /**
-     * @var array<string, true>
+     * @psalm-var array<string, true>
      */
     private static array $deprecationEmittedForMethod = [];
 
     /**
-     * @param class-string $className
+     * @psalm-param class-string $className
      *
      * @throws AnnotationsAreNotSupportedForInternalClassesException
      * @throws InvalidVersionOperatorException
@@ -61,8 +60,6 @@ final class AnnotationParser implements Parser
      */
     public function forClass(string $className): MetadataCollection
     {
-        assert(class_exists($className));
-
         $result = [];
 
         foreach (AnnotationRegistry::getInstance()->forClassName($className)->symbolAnnotations() as $annotation => $values) {
@@ -200,8 +197,8 @@ final class AnnotationParser implements Parser
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
      * @throws AnnotationsAreNotSupportedForInternalClassesException
      * @throws InvalidVersionOperatorException
@@ -209,20 +206,17 @@ final class AnnotationParser implements Parser
      */
     public function forMethod(string $className, string $methodName): MetadataCollection
     {
-        assert(class_exists($className));
-        assert(method_exists($className, $methodName));
-
         $result = [];
 
         foreach (AnnotationRegistry::getInstance()->forMethod($className, $methodName)->symbolAnnotations() as $annotation => $values) {
             switch ($annotation) {
                 case 'after':
-                    $result[] = Metadata::after(0);
+                    $result[] = Metadata::after();
 
                     break;
 
                 case 'afterClass':
-                    $result[] = Metadata::afterClass(0);
+                    $result[] = Metadata::afterClass();
 
                     break;
 
@@ -238,12 +232,12 @@ final class AnnotationParser implements Parser
                     break;
 
                 case 'before':
-                    $result[] = Metadata::before(0);
+                    $result[] = Metadata::before();
 
                     break;
 
                 case 'beforeClass':
-                    $result[] = Metadata::beforeClass(0);
+                    $result[] = Metadata::beforeClass();
 
                     break;
 
@@ -362,12 +356,12 @@ final class AnnotationParser implements Parser
                     break;
 
                 case 'postCondition':
-                    $result[] = Metadata::postCondition(0);
+                    $result[] = Metadata::postCondition();
 
                     break;
 
                 case 'preCondition':
-                    $result[] = Metadata::preCondition(0);
+                    $result[] = Metadata::preCondition();
 
                     break;
 
@@ -446,8 +440,8 @@ final class AnnotationParser implements Parser
     }
 
     /**
-     * @param class-string     $className
-     * @param non-empty-string $methodName
+     * @psalm-param class-string $className
+     * @psalm-param non-empty-string $methodName
      *
      * @throws AnnotationsAreNotSupportedForInternalClassesException
      * @throws InvalidVersionOperatorException
@@ -477,11 +471,9 @@ final class AnnotationParser implements Parser
     }
 
     /**
+     * @psalm-return list<Metadata>
+     *
      * @throws InvalidVersionOperatorException
-     *
-     * @return list<Metadata>
-     *
-     * @phpstan-ignore missingType.iterableValue
      */
     private function parseRequirements(array $requirements, string $level): array
     {

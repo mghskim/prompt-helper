@@ -17,7 +17,7 @@ use PHPUnit\TextUI\Configuration\NoCustomCssFileException;
  *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  *
- * @immutable
+ * @psalm-immutable
  */
 final readonly class Html
 {
@@ -85,7 +85,7 @@ final readonly class Html
     }
 
     /**
-     * @phpstan-assert-if-true !null $this->customCssFile
+     * @psalm-assert-if-true !null $this->customCssFile
      */
     public function hasCustomCssFile(): bool
     {
